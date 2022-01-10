@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+
+// import { Switch } from '@material-ui/core';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import FeatureList from './components/FeatureList';
+import FeatureView from "./components/FeatureView";
+import SwaggerTest from "./components/Swagger";
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<FeatureList />} />
+          <Route path="/features/:id" element={<FeatureView />} />
+          <Route path="/swagger" element={<SwaggerTest />} />
+
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
