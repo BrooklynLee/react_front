@@ -12,13 +12,13 @@ function FeatureComponent(props) {
             <TableCell>{props.link}</TableCell>
             <TableCell>{props.tag.map(item => {
                 return (
-                    <tr className="row">
-                        <td className="col-sm-2">{item.name}</td>
-                    </tr>
+                    < div className="row" >
+                        <Link to={`/search?tag=${item.id}`}>{item.name}</Link>
+                        {/* <a className="col-sm-2">{item.name}</a> */}
+                    </div>
                 )
             })}</TableCell>
-            {/* <TableCell><CustomerDelete stateRefresh={props.stateRefresh} id={props.id} /></TableCell> */}
-        </TableRow>
+        </TableRow >
     );
 }
 

@@ -1,16 +1,14 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import FeatureList from "./FeatureList";
 import './Feature.css';
 import { useParams } from "react-router";
 import SwaggerTest from "./Swagger";
-// import SwaggerUI from "swagger-ui-react"
-// import "swagger-ui-react/swagger-ui.css"
 
 function FeatureView({ history, location, match }) {
 
     const [data, setData] = useState({});
+    const [type, setType] = useState({});
     const { id } = useParams();
     const [progress, setProgress] = useState(0);
 
@@ -21,6 +19,7 @@ function FeatureView({ history, location, match }) {
             }, 20);
             const result = await axios.get("/api/v1/features/" + id)
             setData(result.data);
+            setType(result.data.feature_type);
         };
         fetchData();
     }, []);
@@ -67,7 +66,8 @@ function FeatureView({ history, location, match }) {
                 }
                 <button className="post-view-go-list-btn" onClick={() => history.goBack()}>목록으로 돌아가기</button>
             </div>
-            {/* {data.feature_type.type_name === "MySQL" ? <SwaggerTest /> : <div>I am Happy</div>} */}
+
+            {type.type_name === "MySQL" ? <div><SwaggerTest /> </div> : <div>I am {type.type_name}</div>}
 
         </>
     )
